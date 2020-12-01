@@ -1,0 +1,292 @@
+
+  ##############################	  CLASSIFICATION REPORT 	 ##############################
+
+
+
+              precision    recall  f1-score   support
+
+     unknown       0.90      0.87      0.88       248
+        down       0.94      0.88      0.91       320
+          go       0.89      0.89      0.89       257
+        left       0.91      0.91      0.91       328
+          no       0.84      0.94      0.89       288
+         off       0.91      0.95      0.93       174
+          on       0.94      0.94      0.94       171
+       right       0.94      0.96      0.95       342
+        stop       0.95      0.90      0.92       381
+          up       0.86      0.90      0.88        97
+         yes       0.95      0.94      0.95       370
+
+    accuracy                           0.92      2976
+   macro avg       0.91      0.92      0.91      2976
+weighted avg       0.92      0.92      0.92      2976
+
+
+  ##############################	  SUMMARY 	 ##############################
+
+
+Model: "AuxLSTM"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+TimeDist_128 (TimeDistribute (32, 99, 128)             32896     
+_________________________________________________________________
+TimeDist_30 (TimeDistributed (32, 99, 30)              3870      
+_________________________________________________________________
+LSTM_150 (LSTM)              (32, 99, 150)             108600    
+_________________________________________________________________
+LSTM_50 (LSTM)               (32, 99, 50)              40200     
+_________________________________________________________________
+FC_11 (LSTM)                 (32, 99, 11)              2728      
+_________________________________________________________________
+Softmax (Activation)         (32, 99, 11)              0         
+=================================================================
+Total params: 188,294
+Trainable params: 188,294
+Non-trainable params: 0
+_________________________________________________________________
+
+  ##############################	  OPTIMIZER CONFIGURATION 	 ##############################
+
+
+"{'name': 'Adam', 'learning_rate': 1e-04, 'decay': 0.0, 'beta_1': 0.9, 'beta_2': 0.999, 'epsilon': 1e-07, 'amsgrad': False}"
+  ##############################	  LAYERS CONFIGURATION 	 ##############################
+
+
+{
+    "layers": [
+        {
+            "class_name": "TimeDistributed",
+            "config": {
+                "batch_input_shape": [
+                    32,
+                    99,
+                    256
+                ],
+                "dtype": "float32",
+                "layer": {
+                    "class_name": "Dense",
+                    "config": {
+                        "activation": "relu",
+                        "activity_regularizer": null,
+                        "bias_constraint": null,
+                        "bias_initializer": {
+                            "class_name": "Zeros",
+                            "config": {}
+                        },
+                        "bias_regularizer": null,
+                        "dtype": "float32",
+                        "kernel_constraint": null,
+                        "kernel_initializer": {
+                            "class_name": "GlorotUniform",
+                            "config": {
+                                "seed": null
+                            }
+                        },
+                        "kernel_regularizer": null,
+                        "name": "dense",
+                        "trainable": true,
+                        "units": 128,
+                        "use_bias": true
+                    }
+                },
+                "name": "TimeDist_128",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "TimeDistributed",
+            "config": {
+                "dtype": "float32",
+                "layer": {
+                    "class_name": "Dense",
+                    "config": {
+                        "activation": "relu",
+                        "activity_regularizer": null,
+                        "bias_constraint": null,
+                        "bias_initializer": {
+                            "class_name": "Zeros",
+                            "config": {}
+                        },
+                        "bias_regularizer": null,
+                        "dtype": "float32",
+                        "kernel_constraint": null,
+                        "kernel_initializer": {
+                            "class_name": "GlorotUniform",
+                            "config": {
+                                "seed": null
+                            }
+                        },
+                        "kernel_regularizer": null,
+                        "name": "dense_1",
+                        "trainable": true,
+                        "units": 30,
+                        "use_bias": true
+                    }
+                },
+                "name": "TimeDist_30",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "LSTM",
+            "config": {
+                "activation": "tanh",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "dropout": 0.3,
+                "dtype": "float32",
+                "go_backwards": false,
+                "implementation": 2,
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1L2",
+                    "config": {
+                        "l1": 0.0,
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "name": "LSTM_150",
+                "recurrent_activation": "sigmoid",
+                "recurrent_constraint": null,
+                "recurrent_dropout": 0.0,
+                "recurrent_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "recurrent_regularizer": null,
+                "return_sequences": true,
+                "return_state": false,
+                "stateful": false,
+                "time_major": false,
+                "trainable": true,
+                "unit_forget_bias": true,
+                "units": 150,
+                "unroll": false,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "LSTM",
+            "config": {
+                "activation": "tanh",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "dropout": 0.3,
+                "dtype": "float32",
+                "go_backwards": false,
+                "implementation": 2,
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1L2",
+                    "config": {
+                        "l1": 0.0,
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "name": "LSTM_50",
+                "recurrent_activation": "sigmoid",
+                "recurrent_constraint": null,
+                "recurrent_dropout": 0.0,
+                "recurrent_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "recurrent_regularizer": null,
+                "return_sequences": true,
+                "return_state": false,
+                "stateful": false,
+                "time_major": false,
+                "trainable": true,
+                "unit_forget_bias": true,
+                "units": 50,
+                "unroll": false,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "LSTM",
+            "config": {
+                "activation": "linear",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "dropout": 0.0,
+                "dtype": "float32",
+                "go_backwards": false,
+                "implementation": 2,
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": null,
+                "name": "FC_11",
+                "recurrent_activation": "sigmoid",
+                "recurrent_constraint": null,
+                "recurrent_dropout": 0.0,
+                "recurrent_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "recurrent_regularizer": null,
+                "return_sequences": true,
+                "return_state": false,
+                "stateful": false,
+                "time_major": false,
+                "trainable": true,
+                "unit_forget_bias": true,
+                "units": 11,
+                "unroll": false,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "Activation",
+            "config": {
+                "activation": "softmax",
+                "dtype": "float32",
+                "name": "Softmax",
+                "trainable": true
+            }
+        }
+    ],
+    "name": "AuxLSTM"
+}

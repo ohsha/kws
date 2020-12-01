@@ -1,0 +1,345 @@
+
+  ##############################	  CLASSIFICATION REPORT 	 ##############################
+
+
+
+              precision    recall  f1-score   support
+
+     unknown       0.86      0.79      0.83       248
+        down       0.84      0.89      0.86       320
+          go       0.76      0.84      0.79       257
+        left       0.83      0.78      0.80       328
+          no       0.80      0.82      0.81       288
+         off       0.85      0.85      0.85       174
+          on       0.81      0.89      0.85       171
+       right       0.89      0.92      0.90       342
+        stop       0.88      0.85      0.86       381
+          up       0.70      0.60      0.64        97
+         yes       0.92      0.89      0.90       370
+
+    accuracy                           0.84      2976
+   macro avg       0.83      0.83      0.83      2976
+weighted avg       0.84      0.84      0.84      2976
+
+
+  ##############################	  SUMMARY 	 ##############################
+
+
+Model: "AuxiliaryNetwork"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 99, 1, 128)        32896     
+_________________________________________________________________
+activation (Activation)      (None, 99, 1, 128)        0         
+_________________________________________________________________
+reshape (Reshape)            (None, 99, 128, 1)        0         
+_________________________________________________________________
+dropout (Dropout)            (None, 99, 128, 1)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 99, 1, 30)         3870      
+_________________________________________________________________
+activation_1 (Activation)    (None, 99, 1, 30)         0         
+_________________________________________________________________
+batch_normalization (BatchNo (None, 99, 1, 30)         120       
+_________________________________________________________________
+flatten (Flatten)            (None, 2970)              0         
+_________________________________________________________________
+dense (Dense)                (None, 200)               594200    
+_________________________________________________________________
+activation_2 (Activation)    (None, 200)               0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 200)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 11)                2211      
+_________________________________________________________________
+activation_3 (Activation)    (None, 11)                0         
+=================================================================
+Total params: 633,297
+Trainable params: 633,237
+Non-trainable params: 60
+_________________________________________________________________
+
+  ##############################	  OPTIMIZER CONFIGURATION 	 ##############################
+
+
+"{'name': 'Adam', 'learning_rate': 1e-04, 'decay': 0.0, 'beta_1': 0.9, 'beta_2': 0.999, 'epsilon': 1e-07, 'amsgrad': False}"
+  ##############################	  LAYERS CONFIGURATION 	 ##############################
+
+
+{
+    "layers": [
+        {
+            "class_name": "Conv2D",
+            "config": {
+                "activation": "linear",
+                "activity_regularizer": null,
+                "batch_input_shape": [
+                    null,
+                    99,
+                    256,
+                    1
+                ],
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "dtype": "float32",
+                "filters": 128,
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1L2",
+                    "config": {
+                        "l1": 0.0,
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "kernel_size": [
+                    1,
+                    256
+                ],
+                "name": "conv2d",
+                "padding": "valid",
+                "strides": [
+                    1,
+                    1
+                ],
+                "trainable": true,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "Activation",
+            "config": {
+                "activation": "relu",
+                "dtype": "float32",
+                "name": "activation",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Reshape",
+            "config": {
+                "dtype": "float32",
+                "name": "reshape",
+                "target_shape": [
+                    99,
+                    128,
+                    1
+                ],
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Dropout",
+            "config": {
+                "dtype": "float32",
+                "name": "dropout",
+                "noise_shape": null,
+                "rate": 0.4,
+                "seed": null,
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Conv2D",
+            "config": {
+                "activation": "linear",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "dtype": "float32",
+                "filters": 30,
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1L2",
+                    "config": {
+                        "l1": 0.0,
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "kernel_size": [
+                    1,
+                    128
+                ],
+                "name": "conv2d_1",
+                "padding": "valid",
+                "strides": [
+                    1,
+                    1
+                ],
+                "trainable": true,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "Activation",
+            "config": {
+                "activation": "relu",
+                "dtype": "float32",
+                "name": "activation_1",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "BatchNormalization",
+            "config": {
+                "axis": [
+                    3
+                ],
+                "beta_constraint": null,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "center": true,
+                "dtype": "float32",
+                "epsilon": 0.001,
+                "gamma_constraint": null,
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "gamma_regularizer": null,
+                "momentum": 0.99,
+                "moving_mean_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "moving_variance_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "name": "batch_normalization",
+                "scale": true,
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Flatten",
+            "config": {
+                "data_format": "channels_last",
+                "dtype": "float32",
+                "name": "flatten",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Dense",
+            "config": {
+                "activation": "linear",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "dtype": "float32",
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1L2",
+                    "config": {
+                        "l1": 0.0,
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "name": "dense",
+                "trainable": true,
+                "units": 200,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "Activation",
+            "config": {
+                "activation": "relu",
+                "dtype": "float32",
+                "name": "activation_2",
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Dropout",
+            "config": {
+                "dtype": "float32",
+                "name": "dropout_1",
+                "noise_shape": null,
+                "rate": 0.3,
+                "seed": null,
+                "trainable": true
+            }
+        },
+        {
+            "class_name": "Dense",
+            "config": {
+                "activation": "linear",
+                "activity_regularizer": null,
+                "bias_constraint": null,
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "bias_regularizer": null,
+                "dtype": "float32",
+                "kernel_constraint": null,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": null,
+                "name": "dense_1",
+                "trainable": true,
+                "units": 11,
+                "use_bias": true
+            }
+        },
+        {
+            "class_name": "Activation",
+            "config": {
+                "activation": "softmax",
+                "dtype": "float32",
+                "name": "activation_3",
+                "trainable": true
+            }
+        }
+    ],
+    "name": "AuxiliaryNetwork"
+}

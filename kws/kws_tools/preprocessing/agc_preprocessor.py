@@ -11,8 +11,6 @@ class AGCPreprocessor:
 
 
     def preprocessor(self, audio_data):
-
-
         audio_after_agc = []
         peaks = []
         parts_to_count = 3
@@ -24,7 +22,6 @@ class AGCPreprocessor:
             if len(peaks) > parts_to_count:
                 peak = np.max(peaks[j - parts_to_count : j])
             j += 1
-
             if peak * gain > self.PEAK_THRESHOLD:
                 gain = self.PEAK_THRESHOLD / peak
             else:

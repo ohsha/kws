@@ -23,8 +23,6 @@ class AudioGeneratorPreprocessor():
                  noise=None,
                  validation_split=0.0):
 
-
-
         self.aug = AudioDataGenerator(featurewise_center=featurewise_center,
                  samplewise_center=samplewise_center,
                  featurewise_std_normalization=featurewise_std_normalization,
@@ -45,11 +43,7 @@ class AudioGeneratorPreprocessor():
                  validation_split=validation_split)
 
 
-
-
-
     def preprocessor(self, data):
-
         data = data[np.newaxis, :, :]
         data = next(self.aug.flow(data, batch_size=1))
 

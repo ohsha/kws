@@ -12,19 +12,12 @@ class MFCCPreprocessor:
 
 
     def preprocessor(self, data, rate):
-
-        #data = np.array(data)
         S = librosa.feature.melspectrogram(data, sr=rate, n_mels=self.n_mels)
         log_S = librosa.power_to_db(S, ref=self.ref)
-
         mfcc = librosa.feature.mfcc(S=log_S, n_mfcc=self.n_mfcc)
-
         if self.include_delta == 1:
             return librosa.feature.delta(mfcc)
-
         elif self.include_delta == 2:
             return librosa.feature.delta(mfcc, order=2, mode='nearest' )
-
         else:
             return mfcc
-

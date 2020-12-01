@@ -13,11 +13,8 @@ class MelSpectogramPreprocessor:
 
 
     def preprocessor(self, data, rate):
-
         S = librosa.feature.melspectrogram(data, sr=rate, n_mels=self.n_mels)
-
         if self.include_log:
-
             log_S = librosa.power_to_db(S, ref=self.ref)
             return log_S
         else:
